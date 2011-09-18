@@ -39,6 +39,9 @@ class Manager(object):
     def exclude(self, **kwargs):
         return self.get_model_set().exclude(**kwargs)
 
+    def delete(self):
+        return self.get_model_set().delete()
+
     def get_by_id(self, id):
         return self.get_model_set().get_by_id(id)
 

@@ -132,6 +132,10 @@ class ModelSet(Set):
     def all(self):
         return self._clone()
 
+    def delete(self):
+        for obj in self:
+            obj.delete()
+
     def get_or_create(self, **kwargs):
         opts = {}
         for k, v in kwargs.iteritems():
