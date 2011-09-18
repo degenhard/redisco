@@ -30,6 +30,9 @@ class Manager(object):
     def get_or_create(self, **kwargs):
         return self.get_model_set().get_or_create(**kwargs)
 
+    def get(self, **kwargs):
+        return self.get_model_set().get(**kwargs)
+
     def filter(self, **kwargs):
         return self.get_model_set().filter(**kwargs)
 

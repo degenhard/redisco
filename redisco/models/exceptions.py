@@ -25,3 +25,6 @@ class FieldValidationError(Error):
 
 class BadKeyError(Error):
     pass
+
+class MultipleObjectsReturned(Error):
+    pass

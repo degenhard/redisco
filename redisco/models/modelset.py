@@ -4,7 +4,7 @@ Handles the queries.
 from attributes import IntegerField, DateTimeField
 import redisco
 from redisco.containers import SortedSet, Set, List, NonPersistentList
-from exceptions import AttributeNotIndexed
+from exceptions import AttributeNotIndexed, MultipleObjectsReturned
 from utils import _encode_key
 from attributes import ZINDEXABLE
 
@@ -72,6 +72,13 @@ class ModelSet(Set):
     #####################################
     # METHODS THAT MODIFY THE MODEL SET #
     #####################################
+
+    def get(self, **kwargs):
+        clone = self.filter(**kwargs)
+        if clone.__len__() > 1:
+            raise MultipleObjectsReturned(
+                'More than one object returned: %d' % self.__len__())
+        return clone.__getitem__(0)
 
     def filter(self, **kwargs):
         clone = self._clone()
